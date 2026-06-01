@@ -1,3 +1,21 @@
+const detectSystemTheme = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+// Lytt etter endringer i systemtemaet (f.eks. hvis brukeren bytter fra lyst til mørkt tema i OS)
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", (e) => {
+    if (e.matches) {
+      console.log("System switched to dark mode");
+      // Her kan man legge til kode for å oppdatere applikasjonens tema dynamisk hvis nødvendig
+    } else {
+      console.log("System switched to light mode");
+    }
+  });
+
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 /** 1) Koble til Supabase (BYTT til dine nøkler) */

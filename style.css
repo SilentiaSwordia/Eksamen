@@ -1,3 +1,21 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --sidebar-border: #444444;
+  --topbar-bg: #ffffff;
+  --topbar-border: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --sidebar-border: #303030;
+    --topbar-bg: #242424;
+    --topbar-border: #383838;
+  }
+}
+
 /* Base */
 html,
 body {
@@ -5,8 +23,8 @@ body {
 }
 body {
   font-family: system-ui, sans-serif;
-  background: #f7f9fc;
-  color: #111;
+  background: var(--bg-color);
+  color: var(--text-color);
   margin: 0;
 }
 
@@ -18,8 +36,8 @@ body {
   height: 100vh;
   width: 340px;
   max-width: 90vw;
-  background: #fff;
-  border-left: 1px solid #e9ecef;
+  background: var(--bg-color);
+  border-left: 1px solid var(--sidebar-border);
   box-shadow: -10px 0 24px rgba(0, 0, 0, 0.08);
   transform: translateX(100%);
   transition: transform 0.25s ease;
@@ -34,4 +52,18 @@ body {
 }
 .card-hover:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+.navbar {
+  background: var(--topbar-bg) !important;
+  border-bottom: 1px solid var(--topbar-border) !important;
+}
+
+#authOpenBtn {
+  background: var(--bg-color);
+}
+
+#authOpenBtn:hover {
+  background: var(--sidebar-border);
+  color: var(--bg-color);
 }
