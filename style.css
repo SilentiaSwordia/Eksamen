@@ -1,4 +1,44 @@
-/* Base */
+:root {
+  /* Sidebar Colors */
+  --sidebar-bg: #2b2b2b;
+  --sidebar-bg-hover: #383838;
+  --sidebar-bg-active: #404040;
+  --sidebar-text: #e0e0e0;
+  --sidebar-text-active: #ffffff;
+  --sidebar-border: #444444;
+
+  --topbar-bg: #ffffff;
+  --topbar-border: #e0e0e0;
+  --card-border: #e8e8e8;
+  --card-bg: #ffffff;
+
+  --text-primary: #222222;
+  --text-secondary: #666666;
+  --bg-color: #fafafa;
+  --tabs-bg: #ffffff;
+  --user-hover-bg: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sidebar-bg: #1a1a1a;
+    --sidebar-bg-hover: #2a2a2a;
+    --sidebar-bg-active: #333333;
+    --sidebar-border: #303030;
+
+    --topbar-bg: #242424;
+    --topbar-border: #383838;
+
+    --text-primary: #eeeeee;
+    --text-secondary: #a0a0a0;
+    --bg-color: #121212;
+    --tabs-bg: #242424;
+    --user-hover-bg: #383838;
+    --card-border: #333333;
+    --card-bg: #1e1e1e;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -34,4 +74,9 @@ body {
 }
 .card-hover:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+.navbar {
+  background-color: var(--sidebar-bg) !important;
+  border-bottom: 1px solid var(--topbar-border) !important;
 }
