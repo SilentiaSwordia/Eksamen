@@ -39,7 +39,20 @@ const signupForm = document.getElementById("signupForm");
 const loginMsg = document.getElementById("loginMsg");
 const signupMsg = document.getElementById("signupMsg");
 
-openBtn.addEventListener("click", () => panel.classList.add("open"));
+openBtn.addEventListener("click", async () => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (user) {
+    await supabase.auth.signOut();
+    await refreshAuthUI();
+  } else {
+    panel.classList.add("open");
+    // Clear old messages when opening panel
+    loginMsg.textContent = "";
+    signupMsg.textContent = "";
+  }
+});
 closeBtn.addEventListener("click", () => panel.classList.remove("open"));
 
 tabButtons.forEach((btn) => {
@@ -53,29 +66,35 @@ tabButtons.forEach((btn) => {
 });
 
 async function refreshAuthUI() {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (!user) {
-    loggedOut.style.display = "";
-    loggedIn.style.display = "none";
-    userBadge.textContent = "";
-    return;
+    if (!user) {
+      loggedOut.style.display = "";
+      loggedIn.style.display = "none";
+      userBadge.textContent = "";
+      openBtn.textContent = "Logg inn";
+      return;
+    }
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    const role = profile?.role ?? "user";
+    loggedOut.style.display = "none";
+    loggedIn.style.display = "";
+    whoami.textContent = `Innlogget som ${user.email}`;
+    roleBadge.textContent = `Rolle: ${role}`;
+    userBadge.textContent = role === "admin" ? "Admin" : "Innlogget";
+    openBtn.textContent = "Logg ut";
+  } catch (err) {
+    console.error("Error refreshing auth UI:", err);
   }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  const role = profile?.role ?? "user";
-  loggedOut.style.display = "none";
-  loggedIn.style.display = "";
-  whoami.textContent = `Innlogget som \${user.email}`;
-  roleBadge.textContent = `Rolle: \${role}\``;
-  userBadge.textContent = role === "admin" ? "Admin" : "Innlogget";
 }
 
 loginForm.addEventListener("submit", async (e) => {
@@ -84,13 +103,26 @@ loginForm.addEventListener("submit", async (e) => {
   const email = document.getElementById("loginEmail").value.trim();
   const pass = document.getElementById("loginPass").value;
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password: pass,
-  });
-  loginMsg.textContent = error ? "Feil: " + error.message : "Innlogget ✅";
-  await refreshAuthUI();
-  if (!error) setTimeout(() => panel.classList.remove("open"), 400);
+  try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password: pass,
+    });
+
+    if (error) {
+      loginMsg.textContent = "Feil: " + error.message;
+      console.error("Login error:", error);
+      return;
+    }
+
+    loginMsg.textContent = "Innlogget ✅";
+    await refreshAuthUI();
+    // Close panel after a short delay to show success message
+    setTimeout(() => panel.classList.remove("open"), 800);
+  } catch (err) {
+    loginMsg.textContent = "Feil: " + (err?.message || "Ukjent feil");
+    console.error("Login exception:", err);
+  }
 });
 
 signupForm.addEventListener("submit", async (e) => {
@@ -119,6 +151,10 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
   await refreshAuthUI();
 });
 
-supabase.auth.onAuthStateChange(() => refreshAuthUI());
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log("Auth state changed:", event);
+  refreshAuthUI();
+});
 
+// Initial check on page load
 refreshAuthUI();
