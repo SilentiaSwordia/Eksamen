@@ -35,3 +35,7 @@ body {
 .card-hover:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
 }
+/* All Bootstrap classes will only execute within your specified container */
+@scope (.bootstrap-scope) {
+  @import url("https://jsdelivr.net");
+}
