@@ -1,0 +1,37 @@
+/* Base */
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: system-ui, sans-serif;
+  background: #f7f9fc;
+  color: #111;
+  margin: 0;
+}
+
+/* Auth-panel */
+.auth-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 340px;
+  max-width: 90vw;
+  background: #fff;
+  border-left: 1px solid #e9ecef;
+  box-shadow: -10px 0 24px rgba(0, 0, 0, 0.08);
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  z-index: 1200;
+}
+.auth-panel.open {
+  transform: translateX(0);
+}
+
+.card-hover {
+  transition: box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
