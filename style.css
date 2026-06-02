@@ -89,3 +89,7 @@ body {
 #authOpenBtn {
   min-width: 67.08px;
 }
+
+.navbar-brand {
+  padding-right: 0.5rem;
+}

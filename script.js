@@ -38,6 +38,7 @@ const loginForm = document.getElementById("loginForm");
 const signupForm = document.getElementById("signupForm");
 const loginMsg = document.getElementById("loginMsg");
 const signupMsg = document.getElementById("signupMsg");
+const adminLink = document.getElementById("adminLink");
 
 openBtn.addEventListener("click", async () => {
   const {
@@ -76,6 +77,7 @@ async function refreshAuthUI() {
       loggedIn.style.display = "none";
       userBadge.textContent = "";
       openBtn.textContent = "Logg inn";
+      adminLink.style.display = "none";
       return;
     }
 
@@ -86,11 +88,13 @@ async function refreshAuthUI() {
       .maybeSingle();
 
     const role = profile?.role ?? "user";
+    const isPriveleged = role === "admin" || role === "ansatt";
     loggedOut.style.display = "none";
     loggedIn.style.display = "";
     whoami.textContent = `Innlogget som ${user.email}`;
     roleBadge.textContent = `Rolle: ${role}`;
     userBadge.textContent = role === "admin" ? "Admin" : "Innlogget";
+    adminLink.style.display = isPriveleged ? "" : "none";
     openBtn.textContent = "Logg ut";
   } catch (err) {
     console.error("Error refreshing auth UI:", err);
