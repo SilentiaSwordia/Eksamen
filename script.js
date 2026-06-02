@@ -19,7 +19,7 @@ window
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-/** 1) Koble til Supabase (BYTT til dine nøkler) */
+/** 1) Koble til Supabase */
 const supabase = createClient(
   "https://bmwbifrpkpashrjzcema.supabase.co",
   "sb_publishable_EM33u0jJkprVPboYPC5gOg_TtqORU6m",
