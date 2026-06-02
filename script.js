@@ -137,7 +137,6 @@ loginForm.addEventListener("submit", async (e) => {
     loginMsg.textContent = "Innlogget ✅";
     await refreshAuthUI();
     // Close panel after a short delay to show success message
-    setTimeout(() => panel.classList.remove("open"), 800);
   } catch (err) {
     loginMsg.textContent = "Feil: " + (err?.message || "Ukjent feil");
     console.error("Login exception:", err);
