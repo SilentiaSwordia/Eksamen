@@ -80,3 +80,12 @@ body {
   background-color: var(--sidebar-bg) !important;
   border-bottom: 1px solid var(--topbar-border) !important;
 }
+
+.flex-container {
+  display: flex;
+  width: 115.77px;
+}
+
+#authOpenBtn {
+  min-width: 67.08px;
+}
