@@ -40,6 +40,8 @@ const loginMsg = document.getElementById("loginMsg");
 const signupMsg = document.getElementById("signupMsg");
 const adminLink = document.getElementById("adminLink");
 const adminOnlyElements = document.querySelectorAll(".admin-only");
+const kundeLink = document.getElementById("kundeLink");
+const kundeOnlyElements = document.querySelectorAll(".kunde-only");
 
 openBtn.addEventListener("click", async () => {
   const {
@@ -80,6 +82,8 @@ async function refreshAuthUI() {
       openBtn.textContent = "Logg inn";
       adminLink.style.display = "none";
       adminOnlyElements.forEach((el) => (el.style.display = "none"));
+      kundeLink.style.display = "none";
+      kundeOnlyElements.forEach((el) => (el.style.display = "none"));
       return;
     }
 
@@ -91,6 +95,7 @@ async function refreshAuthUI() {
 
     const role = profile?.role ?? "user";
     const isAdmin = role === "admin";
+    const isKunde = role === "user";
     const isPriveleged = role === "admin" || role === "ansatt";
     loggedOut.style.display = "none";
     loggedIn.style.display = "";
@@ -100,6 +105,10 @@ async function refreshAuthUI() {
     adminLink.style.display = isPriveleged ? "" : "none";
     adminOnlyElements.forEach((el) => {
       el.style.display = isAdmin ? "" : "none";
+    });
+    kundeLink.style.display = isKunde ? "" : "none";
+    kundeOnlyElements.forEach((el) => {
+      el.style.display = isKunde ? "" : "none";
     });
     openBtn.textContent = "Logg ut";
   } catch (err) {

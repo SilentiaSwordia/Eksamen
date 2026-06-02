@@ -3,20 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Varmepumpemesterne - Kundeside</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="heater.vertical.fill.png" />
-    <title>Varmepumpemesterne</title>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     ></script>
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <!-- NAVBAR -->
     <nav
       class="navbar navbar-expand-md navbar-dark border-bottom"
       aria-label="Hovednavigasjon"
@@ -28,9 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Hjem</a
-              >
+              <a class="nav-link" aria-current="page" href="index.html">Hjem</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="tjenester.html">Tjenester</a>
@@ -42,7 +39,7 @@
               <a class="nav-link" href="bedrift.html">For ansatte</a>
             </li>
             <li class="nav-item" id="kundeLink" style="display: none">
-              <a class="nav-link" href="kunde.html">For kunder</a>
+              <a class="nav-link active" href="kunde.html">For kunder</a>
             </li>
           </ul>
         </div>
@@ -137,18 +134,17 @@
     </aside>
 
     <main class="container my-5 flex-grow-1">
-      <h1>Velkommen til Varmepumpemesterne!</h1>
-      <p>
-        Vi er din pålitelige partner for alt som har med varmepumper å gjøre.
-        Enten du trenger installasjon, vedlikehold eller reparasjon, har vi
-        ekspertisen og erfaringen som trengs for å holde hjemmet ditt varmt og
-        energieffektivt.
-      </p>
-      <p>
-        Utforsk våre tjenester for å se hvordan vi kan hjelpe deg med dine
-        varmepumpebehov, eller lær mer om oss og vårt engasjement for kvalitet
-        og kundetilfredshet.
-      </p>
+      <section class="kunde-only">
+        <h1>Velkommen til kundesiden!</h1>
+        <p>
+          Her kan du som kunde få tilgang til eksklusive tilbud, bestille
+          service/vedlikehold, og holde deg oppdatert på de nyeste produktene.
+          Vi setter pris på at du er en del av Varmepumpemesterne-familien, og
+          vi er her for å hjelpe deg med alt du trenger for å få mest mulig ut
+          av din varmepumpe. Utforsk tjenestene våre, og ikke nøl med å ta
+          kontakt hvis du har spørsmål eller trenger assistanse!
+        </p>
+      </section>
     </main>
     <footer class="bg-light py-3 mt-auto">
       <div class="border p-3 mb-4">
