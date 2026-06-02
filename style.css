@@ -96,11 +96,11 @@ body {
 
 #internalResources {
   a {
-    color: var(--text-secondary);
+    color: var(--sidebar-bg);
     text-decoration: none;
   }
   a:hover {
-    color: var(--sidebar-bg);
+    color: var(--sidebar-bg-hover);
     text-decoration: underline;
   }
 }
