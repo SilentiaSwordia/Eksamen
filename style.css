@@ -93,3 +93,14 @@ body {
 .navbar-brand {
   padding-right: 0.5rem;
 }
+
+#internalResources {
+  a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--sidebar-bg);
+    text-decoration: underline;
+  }
+}
