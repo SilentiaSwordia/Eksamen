@@ -105,3 +105,25 @@ body {
     text-decoration: underline;
   }
 }
+
+.hero {
+  background: linear-gradient(135deg, #fffef8 0%, #f7f8fc 100%);
+  border: 1px solid #ececec;
+  padding: 3rem;
+}
+
+.hero h1 {
+  letter-spacing: -0.03em;
+}
+
+.hero p {
+  max-width: 32rem;
+}
+
+footer {
+  background: #f8f9fa;
+}
+
+footer a {
+  color: #111;
+}
